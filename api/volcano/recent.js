@@ -1,6 +1,7 @@
-import { env, fetchVolcanoes } from "../_lib/kma.mjs";
+const { env, fetchVolcanoes } = require("../_lib/kma.js");
 
-export default async function handler(req, res) {
+/** GET /api/volcano/recent — Vercel Node (CommonJS) */
+module.exports = async function handler(req, res) {
   if (req.method !== "GET" && req.method !== "HEAD") {
     res.status(405).json({ ok: false, error: "Method Not Allowed" });
     return;
@@ -32,4 +33,4 @@ export default async function handler(req, res) {
       error: err instanceof Error ? err.message : String(err),
     });
   }
-}
+};

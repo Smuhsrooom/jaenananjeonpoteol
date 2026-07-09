@@ -1,4 +1,4 @@
-/** 기상청 API 호출 (Vercel serverless용 순수 JS) */
+/** 기상청 API 호출 (Vercel serverless용 CommonJS) */
 
 function sortByOccurredDesc(data) {
   return [...data].sort((a, b) => {
@@ -169,7 +169,7 @@ async function fetchFromDataGoKr(serviceKey) {
   };
 }
 
-export async function fetchEarthquakes({ apiHubKey, dataGoKrKey } = {}) {
+async function fetchEarthquakes({ apiHubKey, dataGoKrKey } = {}) {
   const errors = [];
   if (apiHubKey) {
     try {
@@ -260,7 +260,7 @@ function mapVolcanoRaw(raw, index) {
   };
 }
 
-export async function fetchVolcanoes(authKey) {
+async function fetchVolcanoes(authKey) {
   const url = `https://apihub.kma.go.kr/api/typ09/url/volc/selectVolcInfoList.do?orderTy=xml&authKey=${encodeURIComponent(authKey)}`;
   const res = await fetch(url, {
     headers: { Accept: "application/xml, text/xml, */*", "User-Agent": "disaster-safety-portal/1.0" },
@@ -307,11 +307,16 @@ export async function fetchVolcanoes(authKey) {
   };
 }
 
-export function env(name) {
+function env(name) {
   try {
-    // eslint-disable-next-line no-undef
-    return globalThis.process?.env?.[name]?.trim?.() || "";
+    return (process.env[name] || "").trim();
   } catch {
     return "";
   }
 }
+
+module.exports = {
+  env,
+  fetchEarthquakes,
+  fetchVolcanoes,
+};
