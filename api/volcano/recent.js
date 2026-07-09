@@ -1,19 +1,19 @@
-import process from "node:process";
-import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { fetchVolcanoInfoFromApiHub } from "../../artifacts/disaster-safety-portal/src/lib/kmaVolcano";
+import { fetchVolcanoInfoFromApiHub } from "../../artifacts/disaster-safety-portal/src/lib/kmaVolcano.ts";
+
+function env(name) {
+  return (typeof process !== "undefined" && process.env?.[name]?.trim()) || "";
+}
 
 /**
  * Vercel Serverless — GET /api/volcano/recent
  */
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req, res) {
   if (req.method !== "GET" && req.method !== "HEAD") {
     res.status(405).json({ ok: false, error: "Method Not Allowed" });
     return;
   }
 
-  const env = process.env;
-  const apiHubKey =
-    env.KMA_APIHUB_AUTH_KEY?.trim() || env.VITE_KMA_APIHUB_AUTH_KEY?.trim() || "";
+  const apiHubKey = env("KMA_APIHUB_AUTH_KEY") || env("VITE_KMA_APIHUB_AUTH_KEY");
 
   res.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate=120");
 

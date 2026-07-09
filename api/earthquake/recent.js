@@ -1,22 +1,20 @@
-import process from "node:process";
-import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { fetchKmaEarthquakes } from "../../artifacts/disaster-safety-portal/src/lib/kmaEarthquake";
+import { fetchKmaEarthquakes } from "../../artifacts/disaster-safety-portal/src/lib/kmaEarthquake.ts";
+
+function env(name) {
+  return (typeof process !== "undefined" && process.env?.[name]?.trim()) || "";
+}
 
 /**
  * Vercel Serverless — GET /api/earthquake/recent
- * 로컬 Vite 플러그인과 동일한 로직
  */
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req, res) {
   if (req.method !== "GET" && req.method !== "HEAD") {
     res.status(405).json({ ok: false, error: "Method Not Allowed" });
     return;
   }
 
-  const env = process.env;
-  const apiHubKey =
-    env.KMA_APIHUB_AUTH_KEY?.trim() || env.VITE_KMA_APIHUB_AUTH_KEY?.trim() || "";
-  const dataGoKrKey =
-    env.DATA_GO_KR_SERVICE_KEY?.trim() || env.VITE_DATA_GO_KR_SERVICE_KEY?.trim() || "";
+  const apiHubKey = env("KMA_APIHUB_AUTH_KEY") || env("VITE_KMA_APIHUB_AUTH_KEY");
+  const dataGoKrKey = env("DATA_GO_KR_SERVICE_KEY") || env("VITE_DATA_GO_KR_SERVICE_KEY");
 
   res.setHeader("Cache-Control", "s-maxage=30, stale-while-revalidate=60");
 
