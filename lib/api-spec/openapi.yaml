@@ -1,0 +1,446 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: API specification
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: alerts
+    description: Real-time disaster alerts
+  - name: shelters
+    description: Evacuation shelters
+  - name: guides
+    description: Disaster action guides
+  - name: contacts
+    description: Emergency contacts
+  - name: notices
+    description: Public notices
+  - name: summary
+    description: Dashboard summary
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  /summary:
+    get:
+      operationId: getDashboardSummary
+      tags: [summary]
+      summary: Get dashboard summary
+      description: Aggregated counts for the home page overview
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DashboardSummary"
+
+  /alerts:
+    get:
+      operationId: listAlerts
+      tags: [alerts]
+      summary: List disaster alerts
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/AlertStatus"
+        - name: disasterType
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/DisasterType"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Alert"
+
+  /alerts/{id}:
+    get:
+      operationId: getAlert
+      tags: [alerts]
+      summary: Get an alert by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Alert"
+        "404":
+          description: Not found
+
+  /shelters:
+    get:
+      operationId: listShelters
+      tags: [shelters]
+      summary: List evacuation shelters
+      parameters:
+        - name: search
+          in: query
+          required: false
+          description: Search by shelter name, address, or region
+          schema:
+            type: string
+        - name: shelterType
+          in: query
+          required: false
+          schema:
+            $ref: "#/components/schemas/ShelterType"
+        - name: region
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Shelter"
+
+  /shelters/{id}:
+    get:
+      operationId: getShelter
+      tags: [shelters]
+      summary: Get a shelter by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Shelter"
+        "404":
+          description: Not found
+
+  /guides:
+    get:
+      operationId: listGuides
+      tags: [guides]
+      summary: List disaster action guides
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Guide"
+
+  /guides/{disasterType}:
+    get:
+      operationId: getGuide
+      tags: [guides]
+      summary: Get the action guide for a disaster type
+      parameters:
+        - name: disasterType
+          in: path
+          required: true
+          schema:
+            $ref: "#/components/schemas/DisasterType"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Guide"
+        "404":
+          description: Not found
+
+  /contacts:
+    get:
+      operationId: listContacts
+      tags: [contacts]
+      summary: List emergency contacts
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Contact"
+
+  /notices:
+    get:
+      operationId: listNotices
+      tags: [notices]
+      summary: List public notices
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Notice"
+
+  /notices/{id}:
+    get:
+      operationId: getNotice
+      tags: [notices]
+      summary: Get a notice by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Notice"
+        "404":
+          description: Not found
+
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+
+    DisasterType:
+      type: string
+      description: Disaster category
+      enum: [earthquake, fire, flood, typhoon, heatwave, coldwave]
+
+    AlertStatus:
+      type: string
+      enum: [active, resolved]
+
+    AlertLevel:
+      type: string
+      enum: [advisory, watch, warning, emergency]
+
+    ShelterType:
+      type: string
+      enum: [earthquake, flood, typhoon, civil_defense, general]
+
+    Alert:
+      type: object
+      required:
+        - id
+        - disasterType
+        - level
+        - status
+        - region
+        - title
+        - message
+        - issuedAt
+      properties:
+        id:
+          type: integer
+        disasterType:
+          $ref: "#/components/schemas/DisasterType"
+        level:
+          $ref: "#/components/schemas/AlertLevel"
+        status:
+          $ref: "#/components/schemas/AlertStatus"
+        region:
+          type: string
+        title:
+          type: string
+        message:
+          type: string
+        issuedAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: ["string", "null"]
+          format: date-time
+
+    Shelter:
+      type: object
+      required:
+        - id
+        - name
+        - shelterType
+        - address
+        - region
+        - latitude
+        - longitude
+        - capacity
+        - phone
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        shelterType:
+          $ref: "#/components/schemas/ShelterType"
+        address:
+          type: string
+        region:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        capacity:
+          type: integer
+        phone:
+          type: string
+        notes:
+          type: ["string", "null"]
+
+    GuideStep:
+      type: object
+      required:
+        - order
+        - text
+      properties:
+        order:
+          type: integer
+        text:
+          type: string
+
+    Guide:
+      type: object
+      required:
+        - id
+        - disasterType
+        - title
+        - summary
+        - beforeSteps
+        - duringSteps
+        - afterSteps
+      properties:
+        id:
+          type: integer
+        disasterType:
+          $ref: "#/components/schemas/DisasterType"
+        title:
+          type: string
+        summary:
+          type: string
+        beforeSteps:
+          type: array
+          items:
+            $ref: "#/components/schemas/GuideStep"
+        duringSteps:
+          type: array
+          items:
+            $ref: "#/components/schemas/GuideStep"
+        afterSteps:
+          type: array
+          items:
+            $ref: "#/components/schemas/GuideStep"
+
+    Contact:
+      type: object
+      required:
+        - id
+        - name
+        - phone
+        - category
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        phone:
+          type: string
+        category:
+          type: string
+        description:
+          type: ["string", "null"]
+
+    Notice:
+      type: object
+      required:
+        - id
+        - title
+        - content
+        - publishedAt
+        - isPinned
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        content:
+          type: string
+        publishedAt:
+          type: string
+          format: date-time
+        isPinned:
+          type: boolean
+
+    DashboardSummary:
+      type: object
+      required:
+        - activeAlertCount
+        - shelterCount
+        - noticeCount
+        - alertsByLevel
+      properties:
+        activeAlertCount:
+          type: integer
+        shelterCount:
+          type: integer
+        noticeCount:
+          type: integer
+        alertsByLevel:
+          type: array
+          items:
+            $ref: "#/components/schemas/AlertLevelCount"
+
+    AlertLevelCount:
+      type: object
+      required:
+        - level
+        - count
+      properties:
+        level:
+          $ref: "#/components/schemas/AlertLevel"
+        count:
+          type: integer

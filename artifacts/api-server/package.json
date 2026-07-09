@@ -1,0 +1,25 @@
+{
+  "name": "@workspace/api-server",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --import tsx ./src/index.ts",
+    "build": "node ./build.mjs",
+    "start": "node --import tsx ./src/index.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@workspace/api-zod": "workspace:*",
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@esbuild/win32-x64": "0.27.3",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "catalog:",
+    "esbuild": "0.27.3",
+    "tsx": "catalog:"
+  }
+}

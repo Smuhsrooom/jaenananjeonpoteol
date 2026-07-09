@@ -1,0 +1,2 @@
+- [Tailwind v4 @import order](tailwind-import-order.md) — url()/external CSS @import statements must come before `@import "tailwindcss"` or Vite fails to build.
+- [api-server dev script requires restart](api-server-dev-restart.md) — api-server's dev script builds once at start; new routes/schema changes need an explicit workflow restart to take effect.

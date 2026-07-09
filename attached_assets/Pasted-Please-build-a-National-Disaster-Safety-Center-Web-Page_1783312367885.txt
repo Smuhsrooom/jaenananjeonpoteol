@@ -1,0 +1,31 @@
+Please build a "National Disaster Safety Center Web Page" focusing on the scenario of a Mt. Baekdu volcanic eruption, strictly referencing the guidelines in the file named "재난안전포털 - Replit.pdf".
+
+The website must be high-quality, professional, highly scannable, and fully responsive, using semantic HTML5 and clean CSS.
+
+Key Requirements:
+
+1. Top Alert Banner:
+- Create a prominent sticky top banner indicating the current crisis alert level: [심각 (Red)].
+- Text: "🚨 [현재 위기경보: 심각] 금일 06시경 백두산 화산 분화 시작. 화산재 확산에 따라 정부 안내 및 국민행동요령을 반드시 준수하시기 바랍니다."
+
+2. Navigation & Layout (Based on the 4 Stages of Disaster Management):
+- Design a clean navigation bar linking to the following sections:
+  * 홈 (Home / Overview)
+  * 재난 정의 (Disaster Legal Definition)
+  * 위기경보 시스템 (4-Stage Alert Levels)
+  * 국민행동요령 (Action Guidelines for Citizens)
+  * 사회·경제적 영향 브리핑 (Socio-economic Impact Briefing)
+
+3. Content Implementation (From the verbatim file instructions):
+- Legal Definition: Clearly state that a volcanic eruption is a legally defined 'Natural Disaster' under the 「재난 및 안전관리 기본법」.
+- 4 Stages of Disaster Management: Visually organize '예방 (Prevention), 대비 (Preparedness), 대응 (Response), 복구 (Recovery)' using a clean flexbox grid or cards.
+- Action Guidelines: Present specific action items clearly using icons or bullet points. Include:
+  * Indoors: Closing windows/doors, sealing gaps with wet towels.
+  * Outdoors: Wearing protective masks (KF94), long sleeves, and glasses instead of contact lenses.
+  * Vehicles/Buildings: Avoiding driving due to engine damage/slippery roads, and clearing ash from roofs.
+  * Emergency Kit checklist (water, food, flashlight, etc.).
+- Impact Briefing: Create a clean table detailing the indirect impacts on South Korea (Aviation, Agriculture/Food, Public Health, Economy, International Relations) and mention the 2010 Iceland eruption case to show how economic networks are connected.
+
+4. Design & UX:
+- Use a trustworthy government-style theme (Dark Slate Navy '#1a252f', clean White backgrounds, and Accent Red for critical alerts).
+- Avoid dense walls of text. Prioritize readability, clear typography, and scannability at a glance.
