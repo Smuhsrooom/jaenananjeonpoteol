@@ -217,7 +217,7 @@ function MiniStat({
   sub,
   accent,
 }: {
-  icon: React.ComponentType<{ size?: number; className?: string }>;
+  icon: React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>;
   label: string;
   value: string;
   sub: string;
