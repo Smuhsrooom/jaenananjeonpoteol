@@ -1,3 +1,4 @@
+import type { CSSProperties, ComponentType } from "react";
 import {
   ArrowRight,
   Activity,
@@ -217,7 +218,7 @@ function MiniStat({
   sub,
   accent,
 }: {
-  icon: React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>;
+  icon: ComponentType<{ size?: number; className?: string; style?: CSSProperties }>;
   label: string;
   value: string;
   sub: string;
