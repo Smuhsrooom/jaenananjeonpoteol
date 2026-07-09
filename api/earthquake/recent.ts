@@ -1,3 +1,4 @@
+import process from "node:process";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { fetchKmaEarthquakes } from "../../artifacts/disaster-safety-portal/src/lib/kmaEarthquake";
 
@@ -11,14 +12,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return;
   }
 
+  const env = process.env;
   const apiHubKey =
-    process.env.KMA_APIHUB_AUTH_KEY?.trim() ||
-    process.env.VITE_KMA_APIHUB_AUTH_KEY?.trim() ||
-    "";
+    env.KMA_APIHUB_AUTH_KEY?.trim() || env.VITE_KMA_APIHUB_AUTH_KEY?.trim() || "";
   const dataGoKrKey =
-    process.env.DATA_GO_KR_SERVICE_KEY?.trim() ||
-    process.env.VITE_DATA_GO_KR_SERVICE_KEY?.trim() ||
-    "";
+    env.DATA_GO_KR_SERVICE_KEY?.trim() || env.VITE_DATA_GO_KR_SERVICE_KEY?.trim() || "";
 
   res.setHeader("Cache-Control", "s-maxage=30, stale-while-revalidate=60");
 

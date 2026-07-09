@@ -1,3 +1,4 @@
+import process from "node:process";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { fetchVolcanoInfoFromApiHub } from "../../artifacts/disaster-safety-portal/src/lib/kmaVolcano";
 
@@ -10,10 +11,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return;
   }
 
+  const env = process.env;
   const apiHubKey =
-    process.env.KMA_APIHUB_AUTH_KEY?.trim() ||
-    process.env.VITE_KMA_APIHUB_AUTH_KEY?.trim() ||
-    "";
+    env.KMA_APIHUB_AUTH_KEY?.trim() || env.VITE_KMA_APIHUB_AUTH_KEY?.trim() || "";
 
   res.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate=120");
 
