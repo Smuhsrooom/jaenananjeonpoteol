@@ -1,9 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
   "installCommand": "pnpm install",
   "buildCommand": "pnpm --filter @workspace/disaster-safety-portal run build",
-  "outputDirectory": "artifacts/disaster-safety-portal/dist/public",
-  "framework": null,
+  "outputDirectory": "artifacts/disaster-safety-portal/dist",
   "rewrites": [
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
