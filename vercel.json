@@ -2,7 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
   "installCommand": "pnpm install",
-  "buildCommand": "pnpm --filter @workspace/disaster-safety-portal run build",
+  "buildCommand": "node -e \"const fs=require('fs'); const f=fs.readdirSync('api/earthquake'); console.log('api/earthquake =>', f.join(', ')); if (f.includes('recent.ts')) { console.error('ERROR: recent.ts must not exist'); process.exit(1); }\" && pnpm --filter @workspace/disaster-safety-portal run build",
   "outputDirectory": "artifacts/disaster-safety-portal/dist",
   "rewrites": [
     { "source": "/((?!api/).*)", "destination": "/index.html" }

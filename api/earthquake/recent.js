@@ -1,5 +1,6 @@
 import { env, fetchEarthquakes } from "../_lib/kma.mjs";
 
+/** GET /api/earthquake/recent — pure JS (no TypeScript, no process typing) */
 export default async function handler(req, res) {
   if (req.method !== "GET" && req.method !== "HEAD") {
     res.status(405).json({ ok: false, error: "Method Not Allowed" });
