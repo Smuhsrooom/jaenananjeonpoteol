@@ -1,5 +1,6 @@
 import HeroSection from "@/components/HeroSection";
 import LiveMap from "@/components/LiveMap";
+import TodayTmi from "@/components/TodayTmi";
 import Reveal from "@/components/motion/Reveal";
 import Stagger from "@/components/motion/Stagger";
 import { Link } from "wouter";
@@ -48,6 +49,7 @@ export default function HomePage() {
           </Stagger>
         </div>
       </section>
+      <TodayTmi />
     </>
   );
 }

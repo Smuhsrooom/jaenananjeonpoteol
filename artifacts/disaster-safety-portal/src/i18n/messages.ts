@@ -94,6 +94,48 @@ const ko = {
     counts: "지진 {eq} · 화산 {vol}",
     markerNote: "（원 = 지진, 마름모 = 화산）",
   },
+  tmi: {
+    eyebrow: "Today's TMI",
+    title: "오늘의 TMI",
+    badge: "TIP #{n}",
+    footer: "매일 날짜에 맞춰 바뀝니다 · 호기심 유발용 짧은 정보",
+    t1Title: "화산재는 ‘재’보다 ‘유리 가루’에 가깝다",
+    t1Body:
+      "화산재는 탄 나뭇재와 다릅니다. 녹았다가 급히 식은 암석·유리 조각이 미세하게 부서진 것이라 호흡기와 눈을 자극할 수 있어요.",
+    t2Title: "아이슬란드 화산이 유럽 하늘을 닫은 이유",
+    t2Body:
+      "2010년 에이야프얄라요쿨 화산재는 제트 엔진을 막을 수 있어 유럽 항공편이 대거 중단됐습니다. 화산에서 멀리 있어도 ‘하늘길’이 막힐 수 있어요.",
+    t3Title: "백두산은 한 번 크게 폭발한 적 있다",
+    t3Body:
+      "서기 946년 무렵 ‘밀레니엄 대분화’로 불리는 강력한 분화가 있었다고 추정됩니다. 화산재 흔적이 일본 지층에서도 발견될 정도였어요.",
+    t4Title: "긴급재난문자는 왜 중요한가",
+    t4Body:
+      "SNS 소문과 달리 행정안전부·지자체 긴급재난문자는 발신 주체가 분명합니다. 재난 때 ‘누가 말했는지’가 신뢰의 출발점이에요.",
+    t5Title: "분연주 높이가 중요한 이유",
+    t5Body:
+      "분화 때 솟아오르는 연기·재 기둥(분연주)이 높을수록 먼 곳까지 화산재가 퍼질 가능성이 커집니다. 기상청 통보에 높이 정보가 나오는 이유예요.",
+    t6Title: "마스크, 아무거나 쓰면 안 될까?",
+    t6Body:
+      "화산재는 매우 고와서 일반 천 마스크보다 보건용 마스크가 더 도움이 됩니다. 코와 입을 완전히 가리는 것이 핵심이에요.",
+    t7Title: "지붕 위 화산재는 무거울 수 있다",
+    t7Body:
+      "비가 섞이면 화산재가 젖어 무게가 늘어 지붕에 부담을 줄 수 있습니다. 무작정 올라가 치우기보다 안전 안내를 따르는 편이 좋아요.",
+    t8Title: "위기경보 4단계, 색으로 기억",
+    t8Body:
+      "관심(파랑) → 주의(노랑) → 경계(주황) → 심각(빨강). 단계가 올라갈수록 국민에게 요구되는 행동 수준도 높아집니다.",
+    t9Title: "지진 규모(M)와 진도는 다르다",
+    t9Body:
+      "규모는 에너지의 크기, 진도는 그 지역에서 느낀 흔들림·피해 정도입니다. 같은 규모라도 거리·지반에 따라 진도는 달라질 수 있어요.",
+    t10Title: "남한은 ‘두꺼운 직접 재’보다 간접 영향 이야기",
+    t10Body:
+      "백두산에서 남한까지 거리가 있어 두껍게 쌓이는 직접 피해보다 항공·물류·대기 같은 간접 영향이 더 자주 거론됩니다.",
+    t11Title: "기상청 API허브에 해외 화산이 뜨는 이유",
+    t11Body:
+      "기상청은 국내뿐 아니라 항공기·지구 관측에 필요한 화산 정보도 다룹니다. 목록에 에트나 같은 해외 화산이 보여도 정상이에요.",
+    t12Title: "재난 때 가장 위험한 것은 ‘틀린 확신’",
+    t12Body:
+      "“우리 지역은 괜찮아” “다 멈췄대” 같은 확인 안 된 말은 잘못된 행동을 부릅니다. 공식 발표를 한 번 더 확인하는 습관이 중요해요.",
+  },
   banner: {
     crisis: "위기경보 {name}",
     followSuggested: "관측 제안({name})으로",
@@ -487,6 +529,48 @@ const en: Messages = {
     refreshing: "Updating",
     counts: "Quakes {eq} · Volcanoes {vol}",
     markerNote: "(circle = quake, diamond = volcano)",
+  },
+  tmi: {
+    eyebrow: "Today's TMI",
+    title: "Today's TMI",
+    badge: "TIP #{n}",
+    footer: "Changes with the calendar day · short curiosity facts",
+    t1Title: "Volcanic ash is more like glass dust than fireplace ash",
+    t1Body:
+      "It isn’t burned wood ash. It’s rock and glass shattered after melting—fine enough to irritate lungs and eyes.",
+    t2Title: "Why an Iceland volcano closed European skies",
+    t2Body:
+      "In 2010, Eyjafjallajökull ash threatened jet engines, so flights across Europe were grounded—even far from the volcano.",
+    t3Title: "Baekdu has erupted massively before",
+    t3Body:
+      "Around 946 CE, a huge “Millennium” eruption is thought to have occurred. Ash traces have been found as far as Japan.",
+    t4Title: "Why emergency text alerts matter",
+    t4Body:
+      "Unlike social media rumors, government alerts have a clear issuer. In a disaster, “who said it” is the start of trust.",
+    t5Title: "Why plume height is reported",
+    t5Body:
+      "Taller ash columns can spread ash farther. That’s why KMA notices often include plume height.",
+    t6Title: "Not every mask is equal",
+    t6Body:
+      "Ash is very fine; medical-grade masks usually help more than cloth. Cover nose and mouth fully.",
+    t7Title: "Roof ash can get heavy",
+    t7Body:
+      "Wet ash gains weight and can stress roofs. Don’t climb up carelessly—follow safety guidance.",
+    t8Title: "Four alert levels, four colors",
+    t8Body:
+      "Interest (blue) → Caution (yellow) → Alert (orange) → Serious (red). Higher levels ask for stronger public action.",
+    t9Title: "Magnitude ≠ intensity",
+    t9Body:
+      "Magnitude is energy size; intensity is how strong it felt locally. Distance and ground type change intensity.",
+    t10Title: "For South Korea, indirect impacts get the spotlight",
+    t10Body:
+      "Distance from Baekdu means thick direct ashfall is less discussed than aviation, logistics, and air-quality effects.",
+    t11Title: "Why overseas volcanoes appear in KMA data",
+    t11Body:
+      "KMA also handles volcano info relevant to aviation and global monitoring—so Etna can show up, and that’s normal.",
+    t12Title: "The danger of false certainty",
+    t12Body:
+      "Claims like “we’re fine here” or “everything stopped” without sources lead to bad choices. Double-check official releases.",
   },
   banner: {
     crisis: "Alert {name}",
