@@ -60,26 +60,26 @@
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
 
-  /* 한 사이즈 축소 (이전 강화 스케일에서 한 단계 다운) */
-  --text-xs: 0.8125rem;
-  --text-xs--line-height: 1.45;
-  --text-sm: 0.9375rem;
+  /* 한 사이즈 업 */
+  --text-xs: 0.875rem;
+  --text-xs--line-height: 1.5;
+  --text-sm: 1rem;
   --text-sm--line-height: 1.55;
-  --text-base: 1.0625rem;
+  --text-base: 1.125rem;
   --text-base--line-height: 1.65;
-  --text-lg: 1.1875rem;
+  --text-lg: 1.25rem;
   --text-lg--line-height: 1.55;
-  --text-xl: 1.3125rem;
+  --text-xl: 1.375rem;
   --text-xl--line-height: 1.45;
-  --text-2xl: 1.625rem;
+  --text-2xl: 1.75rem;
   --text-2xl--line-height: 1.35;
-  --text-3xl: 2rem;
+  --text-3xl: 2.125rem;
   --text-3xl--line-height: 1.25;
-  --text-4xl: 2.375rem;
+  --text-4xl: 2.5rem;
   --text-4xl--line-height: 1.2;
-  --text-5xl: 3.125rem;
+  --text-5xl: 3.25rem;
   --text-5xl--line-height: 1.1;
-  --text-6xl: 3.875rem;
+  --text-6xl: 4rem;
   --text-6xl--line-height: 1;
 
   --radius-sm: calc(var(--radius) - 4px);
