@@ -1,10 +1,11 @@
 export function formatKst(
   iso: string | null | undefined,
   opts?: Intl.DateTimeFormatOptions,
+  localeTag = "ko-KR",
 ): string {
   if (!iso) return "—";
   try {
-    return new Date(iso).toLocaleString("ko-KR", {
+    return new Date(iso).toLocaleString(localeTag, {
       timeZone: "Asia/Seoul",
       year: "numeric",
       month: "2-digit",

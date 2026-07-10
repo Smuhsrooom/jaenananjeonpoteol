@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Router as WouterRouter, Route, Switch } from "wouter";
 import NotFound from "@/pages/not-found";
 import HomePage from "@/pages/HomePage";
@@ -9,9 +10,11 @@ import ImpactPage from "@/pages/ImpactPage";
 import LivePage from "@/pages/LivePage";
 import ContactsPage from "@/pages/ContactsPage";
 import SiteLayout from "@/components/SiteLayout";
+import IntroSplash, { shouldPlayIntro } from "@/components/IntroSplash";
 import { EarthquakeProvider } from "@/context/EarthquakeContext";
 import { VolcanoProvider } from "@/context/VolcanoContext";
 import { AlertLevelProvider } from "@/context/AlertLevelContext";
+import { I18nProvider } from "@/i18n/I18nContext";
 
 function Router() {
   return (
@@ -37,16 +40,23 @@ function App() {
       ? ""
       : import.meta.env.BASE_URL.replace(/\/$/, "");
 
+  const [introDone, setIntroDone] = useState(() => !shouldPlayIntro());
+
   return (
-    <EarthquakeProvider>
-      <VolcanoProvider>
-        <AlertLevelProvider>
-          <WouterRouter base={base}>
-            <Router />
-          </WouterRouter>
-        </AlertLevelProvider>
-      </VolcanoProvider>
-    </EarthquakeProvider>
+    <I18nProvider>
+      <EarthquakeProvider>
+        <VolcanoProvider>
+          <AlertLevelProvider>
+            <IntroSplash onFinished={() => setIntroDone(true)} />
+            <div className={introDone ? "app-reveal" : "app-reveal app-reveal--pending"}>
+              <WouterRouter base={base}>
+                <Router />
+              </WouterRouter>
+            </div>
+          </AlertLevelProvider>
+        </VolcanoProvider>
+      </EarthquakeProvider>
+    </I18nProvider>
   );
 }
 

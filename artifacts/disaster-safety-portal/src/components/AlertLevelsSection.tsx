@@ -1,46 +1,51 @@
 import SectionHeader from "@/components/SectionHeader";
-import { ALERT_LEVELS } from "@/lib/alertLevels";
+import Reveal from "@/components/motion/Reveal";
+import Stagger from "@/components/motion/Stagger";
+import { ALERT_LEVELS, alertTextKey } from "@/lib/alertLevels";
 import { useAlertLevel } from "@/context/AlertLevelContext";
+import { useT } from "@/i18n/I18nContext";
 
 export default function AlertLevelsSection() {
   const { levelId, setLevelId, suggestedId, followSuggested, manual, level } =
     useAlertLevel();
+  const t = useT();
+
+  const suggestedName = t(alertTextKey(suggestedId, "name"));
+  const bannerLine = t(alertTextKey(level.id, "bannerLine"));
 
   return (
     <section id="alert-levels" className="border-b border-slate-200 bg-white py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeader
-          eyebrow="03 · Alert levels"
-          title="위기경보 4단계"
-          description="관심 → 주의 → 경계 → 심각. 카드를 누르면 상단 배너 색·문구가 바뀝니다. 단계마다 국민에게 요구되는 행동 수준이 다릅니다."
+          eyebrow={t("alertsPage.eyebrow")}
+          title={t("alertsPage.title")}
+          description={t("alertsPage.description")}
           action={
             manual ? (
               <button
                 type="button"
                 onClick={followSuggested}
-                className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-[#0B2B66] hover:bg-slate-50"
+                className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-[#0B2B66] hover:bg-slate-50"
               >
-                관측 제안 단계로 돌아가기
+                {t("alertsPage.backSuggested")}
               </button>
             ) : (
-              <span className="text-[11px] text-slate-500">
-                현재 배너 = 관측 제안 (
-                {ALERT_LEVELS.find((l) => l.id === suggestedId)?.nameKo})
+              <span className="text-sm text-slate-500">
+                {t("alertsPage.currentBanner", { name: suggestedName })}
               </span>
             )
           }
         />
 
-        {/* 현재 배너 문구 미리보기 */}
-        <div
+        <Reveal
           className={`mb-6 rounded-2xl px-4 py-3 text-sm font-semibold text-white shadow-sm ${level.bgClass} ${
             level.id === "caution" ? "!text-slate-900" : ""
           }`}
         >
-          {level.bannerLine}
-        </div>
+          {bannerLine}
+        </Reveal>
 
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <Stagger className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {ALERT_LEVELS.map((lv) => {
             const active = levelId === lv.id;
             return (
@@ -48,7 +53,7 @@ export default function AlertLevelsSection() {
                 key={lv.id}
                 type="button"
                 onClick={() => setLevelId(lv.id)}
-                className={`rounded-2xl border-2 p-4 text-left transition ${
+                className={`rounded-2xl border-2 p-4 text-left transition duration-200 hover:-translate-y-0.5 ${
                   active
                     ? `${lv.borderClass} bg-white shadow-md ring-2 ring-offset-2`
                     : "border-slate-200 bg-[#FAFBFC] hover:border-slate-300"
@@ -58,31 +63,37 @@ export default function AlertLevelsSection() {
                   className="mb-3 h-2 w-full rounded-full"
                   style={{ backgroundColor: lv.color }}
                 />
-                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                  {lv.nameEn}
+                <p className="text-sm font-bold uppercase tracking-wider text-slate-400">
+                  {t(alertTextKey(lv.id, "nameEn"))}
                 </p>
-                <h3 className="text-xl font-black text-[#0B2B66]">{lv.nameKo}</h3>
-                <p className="mt-2 text-xs leading-relaxed text-slate-600">{lv.description}</p>
-                <p className="mt-3 rounded-lg border border-slate-100 bg-white/80 px-2.5 py-2 text-[11px] font-medium leading-snug text-slate-800">
-                  국민 행동: {lv.citizenAction}
+                <h3 className="text-xl font-black text-[#0B2B66]">
+                  {t(alertTextKey(lv.id, "name"))}
+                </h3>
+                <p className="mt-2 text-base leading-relaxed text-slate-700">
+                  {t(alertTextKey(lv.id, "description"))}
+                </p>
+                <p className="mt-3 rounded-lg border border-slate-100 bg-white/80 px-2.5 py-2 text-sm font-medium leading-snug text-slate-800">
+                  {t("alertsPage.citizen", {
+                    action: t(alertTextKey(lv.id, "citizenAction")),
+                  })}
                 </p>
               </button>
             );
           })}
-        </div>
+        </Stagger>
 
-        <div className="mt-10">
-          <h3 className="text-sm font-black text-[#0B2B66]">상황 보고서 → 경보 단계</h3>
-          <p className="mt-1 text-xs text-slate-500">
-            상황을 선택하면 해당 경보 단계로 배너가 바뀝니다.
-          </p>
+        <Reveal className="mt-10">
+          <h3 className="text-lg font-black text-[#0B2B66]">{t("alertsPage.tableTitle")}</h3>
+          <p className="mt-1 text-sm text-slate-500">{t("alertsPage.tableDesc")}</p>
           <div className="mt-4 overflow-hidden rounded-2xl border border-slate-200">
             <table className="w-full text-left text-sm">
-              <thead className="bg-slate-50 text-[10px] uppercase tracking-wide text-slate-500">
+              <thead className="bg-slate-50 text-sm uppercase tracking-wide text-slate-500">
                 <tr>
-                  <th className="px-4 py-3 font-bold">상황 보고서</th>
-                  <th className="px-4 py-3 font-bold w-24">단계</th>
-                  <th className="hidden px-4 py-3 font-bold sm:table-cell">판단 근거</th>
+                  <th className="px-4 py-3 font-bold">{t("alertsPage.colReport")}</th>
+                  <th className="w-24 px-4 py-3 font-bold">{t("alertsPage.colLevel")}</th>
+                  <th className="hidden px-4 py-3 font-bold sm:table-cell">
+                    {t("alertsPage.colBasis")}
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -94,26 +105,26 @@ export default function AlertLevelsSection() {
                     }`}
                     onClick={() => setLevelId(lv.id)}
                   >
-                    <td className="px-4 py-3 text-xs leading-relaxed text-slate-700">
-                      {lv.situationReport}
+                    <td className="px-4 py-3 text-base leading-relaxed text-slate-700">
+                      {t(alertTextKey(lv.id, "situationReport"))}
                     </td>
                     <td className="px-4 py-3">
                       <span
-                        className="inline-block rounded-full px-2.5 py-0.5 text-[11px] font-black text-white"
+                        className="inline-block rounded-full px-2.5 py-0.5 text-sm font-black text-white"
                         style={{ backgroundColor: lv.color }}
                       >
-                        {lv.nameKo}
+                        {t(alertTextKey(lv.id, "name"))}
                       </span>
                     </td>
-                    <td className="hidden px-4 py-3 text-xs text-slate-500 sm:table-cell">
-                      {lv.example}
+                    <td className="hidden px-4 py-3 text-sm text-slate-500 sm:table-cell">
+                      {t(alertTextKey(lv.id, "example"))}
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

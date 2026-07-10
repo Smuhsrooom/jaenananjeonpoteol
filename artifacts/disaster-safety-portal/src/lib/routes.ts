@@ -1,14 +1,14 @@
 /** 사이트 페이지 구분 */
 
 export const ROUTES = [
-  { path: "/", label: "현황", key: "home" },
-  { path: "/definition", label: "재난 정의", key: "definition" },
-  { path: "/system", label: "관리 체계", key: "system" },
-  { path: "/alerts", label: "위기경보", key: "alerts" },
-  { path: "/guidelines", label: "행동요령", key: "guidelines" },
-  { path: "/impact", label: "영향 브리핑", key: "impact" },
-  { path: "/live", label: "실시간", key: "live", live: true },
-  { path: "/contacts", label: "연락처", key: "contacts" },
+  { path: "/", labelKey: "nav.home", key: "home" },
+  { path: "/definition", labelKey: "nav.definition", key: "definition" },
+  { path: "/system", labelKey: "nav.system", key: "system" },
+  { path: "/alerts", labelKey: "nav.alerts", key: "alerts" },
+  { path: "/guidelines", labelKey: "nav.guidelines", key: "guidelines" },
+  { path: "/impact", labelKey: "nav.impact", key: "impact" },
+  { path: "/live", labelKey: "nav.live", key: "live", live: true },
+  { path: "/contacts", labelKey: "nav.contacts", key: "contacts" },
 ] as const;
 
 export type RouteKey = (typeof ROUTES)[number]["key"];

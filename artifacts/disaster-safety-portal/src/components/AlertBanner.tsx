@@ -4,8 +4,10 @@ import { useAlertLevel } from "@/context/AlertLevelContext";
 import { useEarthquake, useLatestEarthquake } from "@/context/EarthquakeContext";
 import { useLatestVolcano } from "@/context/VolcanoContext";
 import { formatKst } from "@/lib/format";
+import { alertTextKey, type AlertLevelId } from "@/lib/alertLevels";
+import { useI18n } from "@/i18n/I18nContext";
 
-function LiveClock() {
+function LiveClock({ localeTag }: { localeTag: string }) {
   const [time, setTime] = useState(() => new Date());
   useEffect(() => {
     const id = setInterval(() => setTime(new Date()), 1000);
@@ -13,7 +15,7 @@ function LiveClock() {
   }, []);
   return (
     <span className="tabular-nums">
-      {time.toLocaleString("ko-KR", {
+      {time.toLocaleString(localeTag, {
         timeZone: "Asia/Seoul",
         month: "2-digit",
         day: "2-digit",
@@ -32,10 +34,15 @@ export default function AlertBanner() {
   const { loading: eqLoading, lastRefresh } = useEarthquake();
   const latestEq = useLatestEarthquake();
   const latestVol = useLatestVolcano();
+  const { t, localeTag } = useI18n();
 
   if (dismissed) return null;
 
-  const isLight = level.id === "caution"; // yellow needs dark text
+  const isLight = level.id === "caution";
+  const name = t(alertTextKey(level.id, "name"));
+  const bannerLine = t(alertTextKey(level.id, "bannerLine"));
+  const citizenAction = t(alertTextKey(level.id, "citizenAction"));
+  const suggestedName = t(alertTextKey(suggestedId as AlertLevelId, "name"));
 
   return (
     <div
@@ -45,41 +52,43 @@ export default function AlertBanner() {
       <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-2.5">
         <AlertTriangle
           className={`shrink-0 ${level.id === "serious" ? "animate-pulse" : ""}`}
-          size={18}
+          size={24}
           strokeWidth={2.5}
         />
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-semibold leading-snug">
+          <p className="text-base font-semibold leading-snug md:text-lg">
             <span
-              className={`mr-2 inline-block rounded-full px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider ${
+              className={`mr-2 inline-block rounded-full px-2.5 py-1 text-sm font-black uppercase tracking-wider ${
                 isLight ? "bg-slate-900 text-amber-300" : "bg-white/95 text-slate-900"
               }`}
             >
-              위기경보 {level.nameKo}
+              {t("banner.crisis", { name })}
             </span>
-            {level.bannerLine}
+            {bannerLine}
           </p>
-          <p className={`mt-0.5 truncate text-[11px] ${isLight ? "text-slate-800/80" : "text-white/85"}`}>
-            {level.citizenAction}
+          <p className={`mt-1 text-sm md:text-base ${isLight ? "text-slate-900/90" : "text-white/95"}`}>
+            {citizenAction}
             {manual && (
               <button
                 type="button"
                 onClick={followSuggested}
                 className="ml-2 underline underline-offset-2 opacity-90 hover:opacity-100"
               >
-                관측 제안({suggestedId === "interest" ? "관심" : suggestedId === "caution" ? "주의" : suggestedId === "alert" ? "경계" : "심각"})으로
+                {t("banner.followSuggested", { name: suggestedName })}
               </button>
             )}
           </p>
         </div>
         <div className="hidden shrink-0 items-center gap-3 sm:flex">
-          <span className={`flex items-center gap-1.5 text-xs font-medium ${isLight ? "text-slate-800/70" : "text-white/80"}`}>
+          <span
+            className={`flex items-center gap-1.5 text-sm font-medium ${isLight ? "text-slate-800/70" : "text-white/80"}`}
+          >
             <Activity size={12} className={eqLoading ? "animate-spin" : ""} />
-            <LiveClock />
+            <LiveClock localeTag={localeTag} />
           </span>
           <button
             type="button"
-            aria-label="닫기"
+            aria-label={t("common.close")}
             onClick={() => setDismissed(true)}
             className={isLight ? "text-slate-700 hover:text-black" : "text-white/70 hover:text-white"}
           >
@@ -88,23 +97,37 @@ export default function AlertBanner() {
         </div>
       </div>
 
-      {/* 실데이터 한 줄 */}
-      <div className={`border-t px-4 py-1.5 ${isLight ? "border-black/10 bg-black/5" : "border-white/15 bg-black/15"}`}>
-        <div className="mx-auto flex max-w-7xl flex-col gap-1 text-[11px] sm:flex-row sm:items-center sm:gap-6">
+      <div
+        className={`border-t px-4 py-1.5 ${isLight ? "border-black/10 bg-black/5" : "border-white/15 bg-black/15"}`}
+      >
+        <div className="mx-auto flex max-w-7xl flex-col gap-1.5 text-sm sm:flex-row sm:items-center sm:gap-6 md:text-base">
           <p className="min-w-0 truncate">
-            <span className="mr-1.5 font-black opacity-80">화산</span>
+            <span className="mr-1.5 font-black opacity-80">{t("common.volcano")}</span>
             {latestVol
-              ? `${latestVol.volcanoName ?? "—"} · 분연주 ${latestVol.plumeHeightKm ?? "—"}km · ${formatKst(latestVol.announcedAt)}`
-              : "발표 대기"}
+              ? t("banner.volLine", {
+                  name: latestVol.volcanoName ?? "—",
+                  km: latestVol.plumeHeightKm ?? "—",
+                  time: formatKst(latestVol.announcedAt, undefined, localeTag),
+                })
+              : t("common.waiting")}
           </p>
           <p className="min-w-0 truncate">
-            <span className="mr-1.5 font-black opacity-80">지진</span>
+            <span className="mr-1.5 font-black opacity-80">{t("common.earthquake")}</span>
             {latestEq
-              ? `M${latestEq.magnitude.toFixed(1)} · ${latestEq.location}`
-              : "발표 대기"}
+              ? t("banner.eqLine", {
+                  mag: latestEq.magnitude.toFixed(1),
+                  loc: latestEq.location,
+                })
+              : t("common.waiting")}
             {lastRefresh && (
               <span className="ml-2 opacity-60">
-                갱신 {lastRefresh.toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
+                {t("banner.refreshed", {
+                  time: lastRefresh.toLocaleTimeString(localeTag, {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                  }),
+                })}
               </span>
             )}
           </p>

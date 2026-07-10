@@ -15,12 +15,14 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <div className="flex min-h-screen flex-col bg-[#FAFBFC] font-sans text-[#1A1F2E] antialiased">
-      {/* 배너+nav 한 덩어리 sticky — 배너 닫히면 nav가 맨 위에 붙음 */}
       <header className="sticky top-0 z-50">
         <AlertBanner />
         <Navbar activeKey={activeKey} />
       </header>
-      <main className="flex-1">{children}</main>
+      {/* key=pathname → 라우트 변경마다 페이지 전환 애니 */}
+      <main key={pathname} className="page-enter flex-1">
+        {children}
+      </main>
       <Footer />
     </div>
   );
