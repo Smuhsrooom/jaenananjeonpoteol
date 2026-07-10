@@ -3,18 +3,12 @@ import { Lightbulb, Sparkles } from "lucide-react";
 import Reveal from "@/components/motion/Reveal";
 import { useT } from "@/i18n/I18nContext";
 
-/** 날짜(연중 일수)로 고정 — 같은 날엔 같은 TMI */
-function dayOfYear(d = new Date()) {
-  const start = new Date(d.getFullYear(), 0, 0);
-  const diff = d.getTime() - start.getTime();
-  return Math.floor(diff / 86_400_000);
-}
-
 const TMI_COUNT = 12;
 
 export default function TodayTmi() {
   const t = useT();
-  const index = useMemo(() => dayOfYear() % TMI_COUNT, []);
+  /** 새로고침할 때마다 랜덤 */
+  const index = useMemo(() => Math.floor(Math.random() * TMI_COUNT), []);
   const n = index + 1;
 
   const title = `${t("tmi.prefix")}${t(`tmi.t${n}Title`)}`;

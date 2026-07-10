@@ -99,7 +99,7 @@ const ko = {
     title: "오늘의 쓸모없는 TMI",
     prefix: "그거 아세요? ",
     badge: "무쓸모 #{n}",
-    footer: "알면 인생에 아무 도움 안 됩니다 · 매일 날짜로 바뀜",
+    footer: "알면 인생에 아무 도움 안 됩니다 · 새로고침할 때마다 바뀜",
     t1Title: "바나나는 기술적으로 베리(장과)다",
     t1Body:
       "식물학적으로 바나나는 베리 쪽이고, 딸기는 베리가 아닙니다. 재난 대비에는 전혀 쓸모없습니다. 그냥 그렇습니다.",
@@ -536,7 +536,7 @@ const en: Messages = {
     title: "Today's useless TMI",
     prefix: "Did you know? ",
     badge: "Useless #{n}",
-    footer: "Will not help your life · rotates by calendar day",
+    footer: "Will not help your life · changes on every refresh",
     t1Title: "Bananas are technically berries",
     t1Body:
       "Botanically bananas count as berries; strawberries don’t. Completely useless for disaster prep. Just saying.",
