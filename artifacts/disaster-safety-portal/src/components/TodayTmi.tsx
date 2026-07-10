@@ -37,7 +37,7 @@ export default function TodayTmi() {
                   <h2 className="text-base font-black sm:text-lg">{t("tmi.title")}</h2>
                 </div>
               </div>
-              <span className="inline-flex items-center gap-1 rounded-full bg-white/15 px-2.5 py-1 text-xs font-semibold text-blue-100">
+              <span className="inline-flex items-center gap-1 rounded-full bg-amber-300/20 px-2.5 py-1 text-xs font-semibold text-amber-100">
                 <Sparkles size={12} />
                 {t("tmi.badge", { n: String(n) })}
               </span>

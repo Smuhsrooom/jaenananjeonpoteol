@@ -96,45 +96,45 @@ const ko = {
   },
   tmi: {
     eyebrow: "Today's TMI",
-    title: "오늘의 TMI",
-    badge: "TIP #{n}",
-    footer: "매일 날짜에 맞춰 바뀝니다 · 호기심 유발용 짧은 정보",
-    t1Title: "화산재는 ‘재’보다 ‘유리 가루’에 가깝다",
+    title: "오늘의 쓸모없는 TMI",
+    badge: "무쓸모 #{n}",
+    footer: "알면 인생에 아무 도움 안 됩니다 · 매일 날짜로 바뀜",
+    t1Title: "바나나는 기술적으로 베리(장과)다",
     t1Body:
-      "화산재는 탄 나뭇재와 다릅니다. 녹았다가 급히 식은 암석·유리 조각이 미세하게 부서진 것이라 호흡기와 눈을 자극할 수 있어요.",
-    t2Title: "아이슬란드 화산이 유럽 하늘을 닫은 이유",
+      "식물학적으로 바나나는 베리 쪽이고, 딸기는 베리가 아닙니다. 재난 대비에는 전혀 쓸모없습니다. 그냥 그렇습니다.",
+    t2Title: "문어는 심장이 세 개다",
     t2Body:
-      "2010년 에이야프얄라요쿨 화산재는 제트 엔진을 막을 수 있어 유럽 항공편이 대거 중단됐습니다. 화산에서 멀리 있어도 ‘하늘길’이 막힐 수 있어요.",
-    t3Title: "백두산은 한 번 크게 폭발한 적 있다",
+      "두 개는 아가미로 피를 보내고, 하나는 몸으로 보냅니다. 이 사실을 알아도 숙제는 안 끝납니다.",
+    t3Title: "꿀은 사실상 안 상한다",
     t3Body:
-      "서기 946년 무렵 ‘밀레니엄 대분화’로 불리는 강력한 분화가 있었다고 추정됩니다. 화산재 흔적이 일본 지층에서도 발견될 정도였어요.",
-    t4Title: "긴급재난문자는 왜 중요한가",
+      "밀봉만 잘하면 수 천 년도 간다는 말이 있습니다. 냉장고에 넣고 까먹은 요거트와는 다른 운명입니다.",
+    t4Title: "flamingo는 원래 하얗다",
     t4Body:
-      "SNS 소문과 달리 행정안전부·지자체 긴급재난문자는 발신 주체가 분명합니다. 재난 때 ‘누가 말했는지’가 신뢰의 출발점이에요.",
-    t5Title: "분연주 높이가 중요한 이유",
+      "분홍빛은 먹이(갑각류·조류) 색소 때문입니다. 백두산이랑은 아무 관련 없습니다. 그냥 TMI입니다.",
+    t5Title: "코끼리는 뛸 수 없다",
     t5Body:
-      "분화 때 솟아오르는 연기·재 기둥(분연주)이 높을수록 먼 곳까지 화산재가 퍼질 가능성이 커집니다. 기상청 통보에 높이 정보가 나오는 이유예요.",
-    t6Title: "마스크, 아무거나 쓰면 안 될까?",
+      "네 발이 동시에 땅에서 떨어지는 ‘뛰기’는 못 합니다. 그래도 매우 빠르게 걸을 수는 있어요. 도움이 되셨나요? 아니요.",
+    t6Title: "피스타치오는 사실 씨앗이다",
     t6Body:
-      "화산재는 매우 고와서 일반 천 마스크보다 보건용 마스크가 더 도움이 됩니다. 코와 입을 완전히 가리는 것이 핵심이에요.",
-    t7Title: "지붕 위 화산재는 무거울 수 있다",
+      "견과라고 부르지만 엄밀히는 씨앗 계열 이야기도 많습니다. 편의점 안주 고를 때 외에는 쓸모없습니다.",
+    t7Title: "구름은 평균 무게가 코끼리급?",
     t7Body:
-      "비가 섞이면 화산재가 젖어 무게가 늘어 지붕에 부담을 줄 수 있습니다. 무작정 올라가 치우기보다 안전 안내를 따르는 편이 좋아요.",
-    t8Title: "위기경보 4단계, 색으로 기억",
+      "적운 하나 무게를 합치면 코끼리 수십~수백 마리 분량이란 추정이 있습니다. 그래도 하늘에 떠 있습니다. 신기하죠? 끝.",
+    t8Title: "달팽이에게도 이빨이 있다",
     t8Body:
-      "관심(파랑) → 주의(노랑) → 경계(주황) → 심각(빨강). 단계가 올라갈수록 국민에게 요구되는 행동 수준도 높아집니다.",
-    t9Title: "지진 규모(M)와 진도는 다르다",
+      "아주 작은 이빨이 수천 개 있습니다. 이 정보를 친구에게 말해도 대화는 보통 거기서 끝납니다.",
+    t9Title: "새우는 심장이 머리에 있다",
     t9Body:
-      "규모는 에너지의 크기, 진도는 그 지역에서 느낀 흔들림·피해 정도입니다. 같은 규모라도 거리·지반에 따라 진도는 달라질 수 있어요.",
-    t10Title: "남한은 ‘두꺼운 직접 재’보다 간접 영향 이야기",
+      "해부학적으로 머리가 몸통과 붙은 구조라 그렇게 말합니다. 새우튀김 먹을 때 떠올리면 맛만 좀 이상해집니다.",
+    t10Title: "슬로스는 일주일에 한 번 화장실 간다",
     t10Body:
-      "백두산에서 남한까지 거리가 있어 두껍게 쌓이는 직접 피해보다 항공·물류·대기 같은 간접 영향이 더 자주 거론됩니다.",
-    t11Title: "기상청 API허브에 해외 화산이 뜨는 이유",
+      "나무늘보는 지상에서 배설하는 경우가 많고, 주 1회 수준이라는 이야기가 유명합니다. 왜 알려드렸는지 저희도 모릅니다.",
+    t11Title: "와사비의 상당수는 와사비가 아니다",
     t11Body:
-      "기상청은 국내뿐 아니라 항공기·지구 관측에 필요한 화산 정보도 다룹니다. 목록에 에트나 같은 해외 화산이 보여도 정상이에요.",
-    t12Title: "재난 때 가장 위험한 것은 ‘틀린 확신’",
+      "시중 초록 페이스트 상당수는 서양고추냉이+색소인 경우가 많습니다. 진짜 와사비는 비쌉니다. 쓸모없는 배신감 TMI.",
+    t12Title: "북극곰 털은 사실 투명하다",
     t12Body:
-      "“우리 지역은 괜찮아” “다 멈췄대” 같은 확인 안 된 말은 잘못된 행동을 부릅니다. 공식 발표를 한 번 더 확인하는 습관이 중요해요.",
+      "흰색처럼 보이는 건 빛의 산란 때문입니다. 재난 포털 메인에 왜 있는지는 묻지 마세요. 오늘의 쓸모없음이니까요.",
   },
   banner: {
     crisis: "위기경보 {name}",
@@ -532,45 +532,45 @@ const en: Messages = {
   },
   tmi: {
     eyebrow: "Today's TMI",
-    title: "Today's TMI",
-    badge: "TIP #{n}",
-    footer: "Changes with the calendar day · short curiosity facts",
-    t1Title: "Volcanic ash is more like glass dust than fireplace ash",
+    title: "Today's useless TMI",
+    badge: "Useless #{n}",
+    footer: "Will not help your life · rotates by calendar day",
+    t1Title: "Bananas are technically berries",
     t1Body:
-      "It isn’t burned wood ash. It’s rock and glass shattered after melting—fine enough to irritate lungs and eyes.",
-    t2Title: "Why an Iceland volcano closed European skies",
+      "Botanically bananas count as berries; strawberries don’t. Completely useless for disaster prep. Just saying.",
+    t2Title: "Octopuses have three hearts",
     t2Body:
-      "In 2010, Eyjafjallajökull ash threatened jet engines, so flights across Europe were grounded—even far from the volcano.",
-    t3Title: "Baekdu has erupted massively before",
+      "Two pump blood to the gills, one to the body. Knowing this still won’t finish your homework.",
+    t3Title: "Honey basically doesn’t spoil",
     t3Body:
-      "Around 946 CE, a huge “Millennium” eruption is thought to have occurred. Ash traces have been found as far as Japan.",
-    t4Title: "Why emergency text alerts matter",
+      "Sealed well, it can last for ages. Unlike that yogurt you forgot in the fridge.",
+    t4Title: "Flamingos are naturally pale",
     t4Body:
-      "Unlike social media rumors, government alerts have a clear issuer. In a disaster, “who said it” is the start of trust.",
-    t5Title: "Why plume height is reported",
+      "The pink comes from their food. Zero connection to Baekdu. Pure TMI.",
+    t5Title: "Elephants can’t truly run",
     t5Body:
-      "Taller ash columns can spread ash farther. That’s why KMA notices often include plume height.",
-    t6Title: "Not every mask is equal",
+      "They don’t get all four feet off the ground at once. They can still move fast. Helpful? Nope.",
+    t6Title: "Pistachios are basically seeds",
     t6Body:
-      "Ash is very fine; medical-grade masks usually help more than cloth. Cover nose and mouth fully.",
-    t7Title: "Roof ash can get heavy",
+      "We call them nuts, but seed-talk shows up a lot. Only useful when choosing snacks.",
+    t7Title: "A cloud can weigh as much as elephants",
     t7Body:
-      "Wet ash gains weight and can stress roofs. Don’t climb up carelessly—follow safety guidance.",
-    t8Title: "Four alert levels, four colors",
+      "Some cumulus estimates add up to dozens or hundreds of elephants. Still floats. Cool? Kind of. Useful? No.",
+    t8Title: "Snails have teeth",
     t8Body:
-      "Interest (blue) → Caution (yellow) → Alert (orange) → Serious (red). Higher levels ask for stronger public action.",
-    t9Title: "Magnitude ≠ intensity",
+      "Thousands of tiny ones. Mention this at a party and the conversation usually dies.",
+    t9Title: "A shrimp’s heart is in its head",
     t9Body:
-      "Magnitude is energy size; intensity is how strong it felt locally. Distance and ground type change intensity.",
-    t10Title: "For South Korea, indirect impacts get the spotlight",
+      "Head and body anatomy is weird like that. Now fried shrimp tastes slightly cursed. You’re welcome.",
+    t10Title: "Sloths poop about once a week",
     t10Body:
-      "Distance from Baekdu means thick direct ashfall is less discussed than aviation, logistics, and air-quality effects.",
-    t11Title: "Why overseas volcanoes appear in KMA data",
+      "Famous fact: they often climb down to do it weekly. Why did we put this here? No idea.",
+    t11Title: "A lot of “wasabi” isn’t wasabi",
     t11Body:
-      "KMA also handles volcano info relevant to aviation and global monitoring—so Etna can show up, and that’s normal.",
-    t12Title: "The danger of false certainty",
+      "Many green pastes are horseradish + dye. Real wasabi is expensive. Useless betrayal TMI.",
+    t12Title: "Polar bear fur is transparent",
     t12Body:
-      "Claims like “we’re fine here” or “everything stopped” without sources lead to bad choices. Double-check official releases.",
+      "It looks white from light scattering. Don’t ask why this is on a disaster portal. It’s today’s uselessness.",
   },
   banner: {
     crisis: "Alert {name}",
