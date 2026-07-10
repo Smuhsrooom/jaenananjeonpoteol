@@ -2,58 +2,66 @@ import SectionHeader from "@/components/SectionHeader";
 import SourceStamp from "@/components/SourceStamp";
 import Reveal from "@/components/motion/Reveal";
 import Stagger from "@/components/motion/Stagger";
-import { Check, X } from "lucide-react";
+import { Check, X, Home, Wind, Car, Package, AlertTriangle } from "lucide-react";
 import { useT } from "@/i18n/I18nContext";
+import type { LucideIcon } from "lucide-react";
 
 export default function GuidelinesSection() {
   const t = useT();
 
-  const GUIDES = [
+  const dos = [t("guidelines.do1"), t("guidelines.do2"), t("guidelines.do3"), t("guidelines.do4"), t("guidelines.do5")];
+  const donts = [
+    t("guidelines.dont1"),
+    t("guidelines.dont2"),
+    t("guidelines.dont3"),
+    t("guidelines.dont4"),
+    t("guidelines.dont5"),
+  ];
+
+  const situations: {
+    icon: LucideIcon;
+    title: string;
+    sub: string;
+    steps: string[];
+    accent: string;
+  }[] = [
     {
-      where: t("guidelines.g1Where"),
-      who: t("guidelines.g1Who"),
-      when: t("guidelines.g1When"),
-      what: t("guidelines.g1What"),
+      icon: Package,
+      title: t("guidelines.s1Title"),
+      sub: t("guidelines.s1Sub"),
+      steps: [t("guidelines.s1a"), t("guidelines.s1b"), t("guidelines.s1c")],
+      accent: "border-slate-200 bg-white",
     },
     {
-      where: t("guidelines.g2Where"),
-      who: t("guidelines.g2Who"),
-      when: t("guidelines.g2When"),
-      what: t("guidelines.g2What"),
+      icon: Home,
+      title: t("guidelines.s2Title"),
+      sub: t("guidelines.s2Sub"),
+      steps: [t("guidelines.s2a"), t("guidelines.s2b"), t("guidelines.s2c")],
+      accent: "border-blue-200 bg-blue-50/40",
     },
     {
-      where: t("guidelines.g3Where"),
-      who: t("guidelines.g3Who"),
-      when: t("guidelines.g3When"),
-      what: t("guidelines.g3What"),
+      icon: Wind,
+      title: t("guidelines.s3Title"),
+      sub: t("guidelines.s3Sub"),
+      steps: [t("guidelines.s3a"), t("guidelines.s3b"), t("guidelines.s3c")],
+      accent: "border-amber-200 bg-amber-50/40",
     },
     {
-      where: t("guidelines.g4Where"),
-      who: t("guidelines.g4Who"),
-      when: t("guidelines.g4When"),
-      what: t("guidelines.g4What"),
+      icon: Car,
+      title: t("guidelines.s4Title"),
+      sub: t("guidelines.s4Sub"),
+      steps: [t("guidelines.s4a"), t("guidelines.s4b"), t("guidelines.s4c")],
+      accent: "border-orange-200 bg-orange-50/30",
     },
   ];
 
-  const REWRITES = [
-    {
-      bad: t("guidelines.r1Bad"),
-      who: t("guidelines.r1Who"),
-      when: t("guidelines.r1When"),
-      what: t("guidelines.r1What"),
-    },
-    {
-      bad: t("guidelines.r2Bad"),
-      who: t("guidelines.r2Who"),
-      when: t("guidelines.r2When"),
-      what: t("guidelines.r2What"),
-    },
-    {
-      bad: t("guidelines.r3Bad"),
-      who: t("guidelines.r3Who"),
-      when: t("guidelines.r3When"),
-      what: t("guidelines.r3What"),
-    },
+  const kit = [
+    t("guidelines.kit1"),
+    t("guidelines.kit2"),
+    t("guidelines.kit3"),
+    t("guidelines.kit4"),
+    t("guidelines.kit5"),
+    t("guidelines.kit6"),
   ];
 
   return (
@@ -75,86 +83,107 @@ export default function GuidelinesSection() {
           }
         />
 
-        <Reveal className="mb-5 flex flex-wrap items-center gap-2">
-          {[t("guidelines.who"), t("guidelines.when"), t("guidelines.what")].map((label) => (
-            <span
-              key={label}
-              className="rounded-full bg-[#0B2B66] px-3 py-1 text-sm font-bold text-white"
-            >
-              {label}
-            </span>
-          ))}
-          <SourceStamp source={t("guidelines.stamp")} className="ml-1" />
+        <Reveal className="mb-6">
+          <SourceStamp source={t("guidelines.stamp")} />
         </Reveal>
 
-        <Reveal className="mb-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-          <div className="border-b border-slate-100 bg-slate-50 px-4 py-3">
-            <h3 className="text-lg font-black text-[#0B2B66]">{t("guidelines.rewriteTitle")}</h3>
-            <p className="mt-0.5 text-sm text-slate-500">{t("guidelines.rewriteDesc")}</p>
+        {/* Do / Don't */}
+        <Stagger className="mb-10 grid gap-4 md:grid-cols-2">
+          <div className="rounded-2xl border border-emerald-200 bg-emerald-50/50 p-5 shadow-sm sm:p-6">
+            <div className="mb-4 flex items-center gap-2 text-emerald-800">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-600 text-white">
+                <Check size={18} strokeWidth={3} />
+              </span>
+              <h3 className="text-lg font-black">{t("guidelines.doTitle")}</h3>
+            </div>
+            <ul className="space-y-3">
+              {dos.map((item) => (
+                <li key={item} className="flex gap-2.5 text-base leading-relaxed text-emerald-950">
+                  <Check size={18} className="mt-0.5 shrink-0 text-emerald-600" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="divide-y divide-slate-100">
-            {REWRITES.map((r) => (
-              <div key={r.bad} className="grid gap-3 p-4 md:grid-cols-2">
-                <div className="rounded-xl border border-red-100 bg-red-50/60 p-3">
-                  <p className="mb-1 flex items-center gap-1 text-sm font-bold text-red-600">
-                    <X size={12} /> {t("guidelines.badLabel")}
-                  </p>
-                  <p className="text-sm text-red-900/80">“{r.bad}”</p>
-                </div>
-                <div className="rounded-xl border border-emerald-100 bg-emerald-50/60 p-3">
-                  <p className="mb-1 flex items-center gap-1 text-sm font-bold text-emerald-700">
-                    <Check size={12} /> {t("guidelines.goodLabel")}
-                  </p>
-                  <dl className="space-y-1 text-sm text-emerald-950/90">
-                    <div className="flex gap-2">
-                      <dt className="w-10 shrink-0 font-bold text-emerald-700/70">
-                        {t("guidelines.who")}
-                      </dt>
-                      <dd>{r.who}</dd>
-                    </div>
-                    <div className="flex gap-2">
-                      <dt className="w-10 shrink-0 font-bold text-emerald-700/70">
-                        {t("guidelines.when")}
-                      </dt>
-                      <dd>{r.when}</dd>
-                    </div>
-                    <div className="flex gap-2">
-                      <dt className="w-10 shrink-0 font-bold text-emerald-700/70">
-                        {t("guidelines.what")}
-                      </dt>
-                      <dd className="leading-relaxed">{r.what}</dd>
-                    </div>
-                  </dl>
-                </div>
-              </div>
-            ))}
+          <div className="rounded-2xl border border-red-200 bg-red-50/50 p-5 shadow-sm sm:p-6">
+            <div className="mb-4 flex items-center gap-2 text-red-800">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-red-600 text-white">
+                <X size={18} strokeWidth={3} />
+              </span>
+              <h3 className="text-lg font-black">{t("guidelines.dontTitle")}</h3>
+            </div>
+            <ul className="space-y-3">
+              {donts.map((item) => (
+                <li key={item} className="flex gap-2.5 text-base leading-relaxed text-red-950">
+                  <X size={18} className="mt-0.5 shrink-0 text-red-600" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-        </Reveal>
-
-        <Stagger className="grid gap-3 md:grid-cols-2">
-          {GUIDES.map((g) => (
-            <article
-              key={g.where}
-              className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md"
-            >
-              <h3 className="text-lg font-black text-[#0B2B66]">{g.where}</h3>
-              <dl className="mt-3 space-y-2 text-sm">
-                <div className="flex gap-2">
-                  <dt className="w-10 shrink-0 font-bold text-slate-400">{t("guidelines.who")}</dt>
-                  <dd className="text-slate-800">{g.who}</dd>
-                </div>
-                <div className="flex gap-2">
-                  <dt className="w-10 shrink-0 font-bold text-slate-400">{t("guidelines.when")}</dt>
-                  <dd className="text-slate-800">{g.when}</dd>
-                </div>
-                <div className="flex gap-2">
-                  <dt className="w-10 shrink-0 font-bold text-slate-400">{t("guidelines.what")}</dt>
-                  <dd className="leading-relaxed text-slate-800">{g.what}</dd>
-                </div>
-              </dl>
-            </article>
-          ))}
         </Stagger>
+
+        {/* 상황별 */}
+        <Reveal className="mb-4">
+          <h3 className="text-xl font-black text-[#0B2B66]">{t("guidelines.situationsTitle")}</h3>
+        </Reveal>
+        <Stagger className="mb-10 grid gap-4 md:grid-cols-2">
+          {situations.map((s) => {
+            const Icon = s.icon;
+            return (
+              <article
+                key={s.title}
+                className={`rounded-2xl border p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md sm:p-6 ${s.accent}`}
+              >
+                <div className="mb-3 flex items-start gap-3">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#0B2B66] text-white">
+                    <Icon size={20} />
+                  </span>
+                  <div>
+                    <h4 className="text-lg font-black text-[#0B2B66]">{s.title}</h4>
+                    <p className="text-sm font-semibold text-slate-500">{s.sub}</p>
+                  </div>
+                </div>
+                <ol className="space-y-2.5">
+                  {s.steps.map((step, i) => (
+                    <li key={step} className="flex gap-3 text-base leading-relaxed text-slate-800">
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#0B2B66]/10 text-sm font-black text-[#0B2B66]">
+                        {i + 1}
+                      </span>
+                      <span>{step}</span>
+                    </li>
+                  ))}
+                </ol>
+              </article>
+            );
+          })}
+        </Stagger>
+
+        {/* 비상용품 */}
+        <Reveal className="mb-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <h3 className="mb-4 text-lg font-black text-[#0B2B66]">{t("guidelines.kitTitle")}</h3>
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {kit.map((item, i) => (
+              <li
+                key={item}
+                className="flex items-start gap-2.5 rounded-xl border border-slate-100 bg-[#FAFBFC] px-3 py-3 text-base text-slate-800"
+              >
+                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-[#0B2B66] text-xs font-black text-white">
+                  {i + 1}
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+
+        <Reveal className="flex gap-3 rounded-2xl border border-amber-200 bg-amber-50/80 px-4 py-4 sm:px-5">
+          <AlertTriangle size={22} className="mt-0.5 shrink-0 text-amber-700" />
+          <div>
+            <p className="text-base font-black text-amber-900">{t("guidelines.noteTitle")}</p>
+            <p className="mt-1 text-base leading-relaxed text-amber-950/90">{t("guidelines.noteBody")}</p>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
