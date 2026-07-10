@@ -17,7 +17,7 @@ export default function TodayTmi() {
   const index = useMemo(() => dayOfYear() % TMI_COUNT, []);
   const n = index + 1;
 
-  const title = t(`tmi.t${n}Title`);
+  const title = `${t("tmi.prefix")}${t(`tmi.t${n}Title`)}`;
   const body = t(`tmi.t${n}Body`);
 
   return (

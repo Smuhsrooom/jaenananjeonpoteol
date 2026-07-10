@@ -97,6 +97,7 @@ const ko = {
   tmi: {
     eyebrow: "Today's TMI",
     title: "오늘의 쓸모없는 TMI",
+    prefix: "그거 아세요? ",
     badge: "무쓸모 #{n}",
     footer: "알면 인생에 아무 도움 안 됩니다 · 매일 날짜로 바뀜",
     t1Title: "바나나는 기술적으로 베리(장과)다",
@@ -533,6 +534,7 @@ const en: Messages = {
   tmi: {
     eyebrow: "Today's TMI",
     title: "Today's useless TMI",
+    prefix: "Did you know? ",
     badge: "Useless #{n}",
     footer: "Will not help your life · rotates by calendar day",
     t1Title: "Bananas are technically berries",
