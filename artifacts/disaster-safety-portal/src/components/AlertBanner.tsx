@@ -49,16 +49,16 @@ export default function AlertBanner() {
       data-testid="alert-banner"
       className={`shadow-md ${level.bgClass} ${isLight ? "text-slate-900" : "text-white"}`}
     >
-      <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-2.5">
+      <div className="mx-auto flex max-w-7xl items-center gap-2.5 px-4 py-2">
         <AlertTriangle
           className={`shrink-0 ${level.id === "serious" ? "animate-pulse" : ""}`}
-          size={24}
+          size={18}
           strokeWidth={2.5}
         />
         <div className="min-w-0 flex-1">
-          <p className="text-base font-semibold leading-snug md:text-lg">
+          <p className="text-sm font-semibold leading-snug">
             <span
-              className={`mr-2 inline-block rounded-full px-2.5 py-1 text-sm font-black uppercase tracking-wider ${
+              className={`mr-2 inline-block rounded-full px-2 py-0.5 text-xs font-black uppercase tracking-wider ${
                 isLight ? "bg-slate-900 text-amber-300" : "bg-white/95 text-slate-900"
               }`}
             >
@@ -66,7 +66,7 @@ export default function AlertBanner() {
             </span>
             {bannerLine}
           </p>
-          <p className={`mt-1 text-sm md:text-base ${isLight ? "text-slate-900/90" : "text-white/95"}`}>
+          <p className={`mt-0.5 truncate text-xs sm:text-sm ${isLight ? "text-slate-900/85" : "text-white/90"}`}>
             {citizenAction}
             {manual && (
               <button
@@ -100,7 +100,7 @@ export default function AlertBanner() {
       <div
         className={`border-t px-4 py-1.5 ${isLight ? "border-black/10 bg-black/5" : "border-white/15 bg-black/15"}`}
       >
-        <div className="mx-auto flex max-w-7xl flex-col gap-1.5 text-sm sm:flex-row sm:items-center sm:gap-6 md:text-base">
+        <div className="mx-auto flex max-w-7xl flex-col gap-1 text-xs sm:flex-row sm:items-center sm:gap-6 sm:text-sm">
           <p className="min-w-0 truncate">
             <span className="mr-1.5 font-black opacity-80">{t("common.volcano")}</span>
             {latestVol

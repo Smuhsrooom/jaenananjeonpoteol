@@ -43,16 +43,16 @@ export default function HeroSection() {
         </div>
 
         <h1
-          className="hero-enter__item max-w-4xl text-4xl font-black leading-[1.15] tracking-tight text-[#0B2B66] sm:text-5xl lg:text-6xl"
+          className="hero-enter__item max-w-3xl text-3xl font-black leading-tight tracking-tight text-[#0B2B66] sm:text-4xl"
           style={{ ["--i" as string]: 1 }}
         >
           {t("hero.title")}
-          <span className="mt-3 block text-xl font-semibold text-slate-700 sm:text-2xl">
+          <span className="mt-2 block text-base font-semibold text-slate-700 sm:text-lg">
             {t("hero.subtitle")}
           </span>
         </h1>
         <p
-          className="hero-enter__item mt-5 max-w-3xl text-lg leading-relaxed text-slate-700 sm:text-xl"
+          className="hero-enter__item mt-4 max-w-2xl text-base leading-relaxed text-slate-700 sm:text-lg"
           style={{ ["--i" as string]: 2 }}
         >
           {t("hero.leadBefore")}{" "}
