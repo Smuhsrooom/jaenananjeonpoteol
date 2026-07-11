@@ -3,6 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Menu, X, Shield } from "lucide-react";
 import { ROUTES } from "@/lib/routes";
 import { useI18n } from "@/i18n/I18nContext";
+import { useAlertLevel } from "@/context/AlertLevelContext";
 
 interface NavbarProps {
   activeKey: string;
@@ -12,6 +13,7 @@ export default function Navbar({ activeKey }: NavbarProps) {
   const [open, setOpen] = useState(false);
   const [, setLocation] = useLocation();
   const { t, locale, setLocale } = useI18n();
+  const { level } = useAlertLevel();
 
   const go = (path: string) => {
     setLocation(path);
@@ -20,18 +22,27 @@ export default function Navbar({ activeKey }: NavbarProps) {
   };
 
   return (
-    <nav className="border-b border-slate-200/80 bg-white/95 backdrop-blur-sm">
+    <nav
+      className="border-b bg-white/95 backdrop-blur-sm transition-colors duration-300"
+      style={{ borderColor: `${level.color}55` }}
+    >
       <div className="mx-auto flex min-h-16 max-w-7xl items-center justify-between gap-2 px-4 py-2.5 sm:px-6">
         <Link
           href="/"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="flex min-w-0 items-center gap-2.5 transition-opacity hover:opacity-90"
         >
-          <div className="shrink-0 rounded-lg bg-[#0B2B66] p-1.5 transition-transform duration-200 hover:scale-105">
-            <Shield size={16} className="text-white" />
+          <div
+            className="shrink-0 rounded-lg p-1.5 text-white transition-transform duration-200 hover:scale-105"
+            style={{ backgroundColor: level.color }}
+          >
+            <Shield size={16} />
           </div>
           <div className="min-w-0 text-left">
-            <p className="truncate text-base font-black leading-tight text-[#0B2B66] sm:text-lg">
+            <p
+              className="truncate text-base font-black leading-tight sm:text-lg"
+              style={{ color: level.inkColor }}
+            >
               {t("brand.name")}
             </p>
             <p className="mt-1 truncate text-sm text-slate-600">{t("brand.tagline")}</p>
@@ -47,10 +58,17 @@ export default function Navbar({ activeKey }: NavbarProps) {
                   href={item.path}
                   onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                   className={`relative inline-flex items-center rounded-lg px-3 py-2 text-base font-semibold transition-all duration-200 ${
-                    active
-                      ? "bg-slate-100 text-[#0B2B66]"
-                      : "text-slate-700 hover:bg-slate-50 hover:text-[#0B2B66]"
+                    active ? "" : "text-slate-700 hover:bg-slate-50"
                   }`}
+                  style={
+                    active
+                      ? {
+                          backgroundColor: level.softColor,
+                          color: level.inkColor,
+                          boxShadow: `inset 0 -2px 0 ${level.color}`,
+                        }
+                      : undefined
+                  }
                 >
                   {"live" in item && item.live && (
                     <span className="mr-1 inline-block h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
@@ -72,8 +90,9 @@ export default function Navbar({ activeKey }: NavbarProps) {
               type="button"
               onClick={() => setLocale("ko")}
               className={`rounded-md px-2 py-1 transition ${
-                locale === "ko" ? "bg-[#0B2B66] text-white shadow-sm" : "text-slate-500 hover:text-[#0B2B66]"
+                locale === "ko" ? "text-white shadow-sm" : "text-slate-500"
               }`}
+              style={locale === "ko" ? { backgroundColor: level.color } : undefined}
             >
               {t("nav.langKo")}
             </button>
@@ -81,8 +100,9 @@ export default function Navbar({ activeKey }: NavbarProps) {
               type="button"
               onClick={() => setLocale("en")}
               className={`rounded-md px-2 py-1 transition ${
-                locale === "en" ? "bg-[#0B2B66] text-white shadow-sm" : "text-slate-500 hover:text-[#0B2B66]"
+                locale === "en" ? "text-white shadow-sm" : "text-slate-500"
               }`}
+              style={locale === "en" ? { backgroundColor: level.color } : undefined}
             >
               {t("nav.langEn")}
             </button>
@@ -113,10 +133,15 @@ export default function Navbar({ activeKey }: NavbarProps) {
                 key={item.path}
                 type="button"
                 onClick={() => go(item.path)}
-                style={{ transitionDelay: open ? `${40 + i * 30}ms` : "0ms" }}
                 className={`nav-mobile__item block w-full rounded-lg px-3 py-2.5 text-left text-sm font-semibold transition-all duration-200 ${
-                  active ? "bg-slate-100 text-[#0B2B66]" : "text-slate-600 hover:bg-slate-50"
+                  active ? "" : "text-slate-600 hover:bg-slate-50"
                 }`}
+                style={{
+                  transitionDelay: open ? `${40 + i * 30}ms` : "0ms",
+                  ...(active
+                    ? { backgroundColor: level.softColor, color: level.inkColor }
+                    : {}),
+                }}
               >
                 {t(item.labelKey)}
               </button>

@@ -7,6 +7,7 @@ import SystemPage from "@/pages/SystemPage";
 import AlertsPage from "@/pages/AlertsPage";
 import GuidelinesPage from "@/pages/GuidelinesPage";
 import ImpactPage from "@/pages/ImpactPage";
+import SimulationPage from "@/pages/SimulationPage";
 import LivePage from "@/pages/LivePage";
 import ContactsPage from "@/pages/ContactsPage";
 import SiteLayout from "@/components/SiteLayout";
@@ -26,6 +27,7 @@ function Router() {
         <Route path="/alerts" component={AlertsPage} />
         <Route path="/guidelines" component={GuidelinesPage} />
         <Route path="/impact" component={ImpactPage} />
+        <Route path="/simulation" component={SimulationPage} />
         <Route path="/live" component={LivePage} />
         <Route path="/contacts" component={ContactsPage} />
         <Route component={NotFound} />

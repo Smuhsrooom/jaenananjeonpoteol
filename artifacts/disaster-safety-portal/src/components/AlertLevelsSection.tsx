@@ -14,7 +14,11 @@ export default function AlertLevelsSection() {
   const bannerLine = t(alertTextKey(level.id, "bannerLine"));
 
   return (
-    <section id="alert-levels" className="border-b border-slate-200 bg-white py-14">
+    <section
+      id="alert-levels"
+      className="border-b border-slate-200 py-14 transition-colors duration-300"
+      style={{ backgroundColor: level.softColor }}
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeader
           eyebrow={t("alertsPage.eyebrow")}
@@ -25,7 +29,8 @@ export default function AlertLevelsSection() {
               <button
                 type="button"
                 onClick={followSuggested}
-                className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-[#0B2B66] hover:bg-slate-50"
+                className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold hover:bg-slate-50"
+                style={{ color: level.inkColor }}
               >
                 {t("alertsPage.backSuggested")}
               </button>
@@ -38,13 +43,16 @@ export default function AlertLevelsSection() {
         />
 
         <Reveal
-          className={`mb-6 rounded-2xl px-4 py-3 text-sm font-semibold text-white shadow-sm ${level.bgClass} ${
-            level.id === "caution" ? "!text-slate-900" : ""
-          }`}
+          className="mb-6 rounded-2xl px-4 py-3 text-sm font-semibold shadow-sm transition-colors duration-300"
+          style={{
+            backgroundColor: level.color,
+            color: level.id === "caution" ? "#1a1a1a" : "#fff",
+          }}
         >
           {bannerLine}
         </Reveal>
 
+        <p className="mb-3 text-sm font-bold text-slate-600">{t("alertsPage.pickHint")}</p>
         <Stagger className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {ALERT_LEVELS.map((lv) => {
             const active = levelId === lv.id;
@@ -54,19 +62,21 @@ export default function AlertLevelsSection() {
                 type="button"
                 onClick={() => setLevelId(lv.id)}
                 className={`rounded-2xl border-2 p-4 text-left transition duration-200 hover:-translate-y-0.5 ${
-                  active
-                    ? `${lv.borderClass} bg-white shadow-md ring-2 ring-offset-2`
-                    : "border-slate-200 bg-[#FAFBFC] hover:border-slate-300"
+                  active ? "bg-white shadow-md ring-2 ring-offset-2" : "bg-white/90 hover:shadow-sm"
                 }`}
+                style={{
+                  borderColor: active ? lv.color : "#e2e8f0",
+                  outlineColor: active ? lv.color : undefined,
+                }}
               >
                 <div
-                  className="mb-3 h-2 w-full rounded-full"
+                  className="mb-3 h-2.5 w-full rounded-full"
                   style={{ backgroundColor: lv.color }}
                 />
                 <p className="text-sm font-bold uppercase tracking-wider text-slate-400">
                   {t(alertTextKey(lv.id, "nameEn"))}
                 </p>
-                <h3 className="text-xl font-black text-[#0B2B66]">
+                <h3 className="text-xl font-black" style={{ color: lv.inkColor }}>
                   {t(alertTextKey(lv.id, "name"))}
                 </h3>
                 <p className="mt-2 text-base leading-relaxed text-slate-700">
@@ -77,6 +87,9 @@ export default function AlertLevelsSection() {
                     action: t(alertTextKey(lv.id, "citizenAction")),
                   })}
                 </p>
+                {lv.id === "serious" && (
+                  <p className="mt-2 text-xs font-bold text-red-700">{t("alertsPage.seriousHint")}</p>
+                )}
               </button>
             );
           })}

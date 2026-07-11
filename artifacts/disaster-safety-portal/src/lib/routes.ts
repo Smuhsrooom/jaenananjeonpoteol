@@ -7,6 +7,7 @@ export const ROUTES = [
   { path: "/alerts", labelKey: "nav.alerts", key: "alerts" },
   { path: "/guidelines", labelKey: "nav.guidelines", key: "guidelines" },
   { path: "/impact", labelKey: "nav.impact", key: "impact" },
+  { path: "/simulation", labelKey: "nav.simulation", key: "simulation" },
   { path: "/live", labelKey: "nav.live", key: "live", live: true },
   { path: "/contacts", labelKey: "nav.contacts", key: "contacts" },
 ] as const;
@@ -18,5 +19,6 @@ export function matchRouteKey(pathname: string): RouteKey {
   const hit = ROUTES.find((r) => r.path === clean);
   if (hit) return hit.key;
   if (clean.startsWith("/live")) return "live";
+  if (clean.startsWith("/simulation")) return "simulation";
   return "home";
 }
