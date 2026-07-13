@@ -1,6 +1,7 @@
 import { MapPin, Phone } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
 import Stagger from "@/components/motion/Stagger";
+import ShelterRegionStats from "@/components/ShelterRegionStats";
 import ShelterMap from "@/components/ShelterMap";
 import { useT } from "@/i18n/I18nContext";
 
@@ -85,6 +86,7 @@ export default function ContactsSection() {
           <p className="mt-3 text-sm text-slate-500">{t("contacts.shelterNote")}</p>
         </div>
 
+        <ShelterRegionStats />
         <ShelterMap />
       </div>
     </section>

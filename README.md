@@ -267,6 +267,7 @@ jaenananjeonpoteol/
 |--------|------|------|----------------|
 | GET | `/api/earthquake/recent` | 최근 지진 목록 | `s-maxage=30` |
 | GET | `/api/volcano/recent` | 화산 정보 목록 | `s-maxage=60` |
+| GET | `/api/shelter/region` | 지역별 주민대피시설 통계 | `s-maxage=300` |
 
 ### 8.2 외부 원천
 
@@ -494,7 +495,7 @@ pnpm --filter @workspace/disaster-safety-portal serve
 ### 12.2 환경 변수 (Vercel 대시보드)
 
 - `KMA_APIHUB_AUTH_KEY` **(필수, 화산·지진 API허브)**
-- `DATA_GO_KR_SERVICE_KEY` (선택)
+- `DATA_GO_KR_SERVICE_KEY` (선택, 지진/대피소 통계)
 
 ### 12.3 배포 시 주의
 
@@ -509,7 +510,7 @@ pnpm --filter @workspace/disaster-safety-portal serve
 | 변수명 | 필수 | 설명 | 발급 |
 |--------|------|------|------|
 | `KMA_APIHUB_AUTH_KEY` | 권장/필수* | 기상청 API허브 인증키 | https://apihub.kma.go.kr/ |
-| `DATA_GO_KR_SERVICE_KEY` | 선택 | 공공데이터포털 키 (지진 보조) | https://www.data.go.kr/ |
+| `DATA_GO_KR_SERVICE_KEY` | 선택 | 공공데이터포털 키 (지진/대피소 통계 보조) | https://www.data.go.kr/ |
 | `VITE_KMA_APIHUB_AUTH_KEY` | 비권장 | 레거시 별칭 (서버에서만 읽음) | — |
 | `BASE_PATH` | 선택 | 서브패스 배포 시 | 기본 `/` |
 | `PORT` | 선택 | 개발 서버 포트 | 기본 `5173` |
